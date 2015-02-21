@@ -11,6 +11,6 @@ namespace DapperUnitOfWork.Domain.Entities
         public Guid CatId { get; set; }
         public Guid BreedId { get; set; }
         public string Name { get; set; }
-        public string Age { get; set; }
+        public int Age { get; set; }
     }
 }
