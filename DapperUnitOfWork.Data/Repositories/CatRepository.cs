@@ -27,7 +27,7 @@ namespace DapperUnitOfWork.Data.Repositories
             ).ToList();
         }
 
-        public Cat GetById(Guid id)
+        public Cat GetById(int id)
         {
             return Connection.Query<Cat>(
                 "SELECT * FROM Cat WHERE CatId = @CatId",
@@ -36,13 +36,14 @@ namespace DapperUnitOfWork.Data.Repositories
             ).FirstOrDefault();
         }
 
-        public Guid Insert(Cat cat)
+        public void Insert(Cat cat)
         {
-            return Connection.Query<Guid>(
+            var catId = Connection.ExecuteScalar<int>(
                 "INSERT INTO Cat(BreedId, Name, Age) VALUES(@BreedId, @Name, @Age); SELECT SCOPE_IDENTITY()",
                 param: new { BreedId = cat.BreedId, Name = cat.Name, Age = cat.Age },
                 transaction: Transaction
-            ).FirstOrDefault();
+            );
+            cat.CatId = catId;
         }
 
         public void Update(Cat cat)

@@ -23,6 +23,7 @@ namespace DapperUnitOfWork.Data
         {
             var connectionFactory = new ConnectionFactory(connectionName);
             _connection = connectionFactory.Create();
+            _connection.Open();
             _transaction = _connection.BeginTransaction();
         }
 
@@ -76,6 +77,7 @@ namespace DapperUnitOfWork.Data
                     }
                     if (_connection != null)
                     {
+                        _connection.Close();
                         _connection.Dispose();
                         _connection = null;
                     }

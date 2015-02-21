@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DapperUnitOfWork.Domain.Repositories
 {
-    public interface IBreedRepository : IRepository<Breed, Guid>
+    public interface IBreedRepository : IRepository<Breed, int>
     {
     }
 }

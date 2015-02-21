@@ -26,10 +26,10 @@ namespace DapperUnitOfWork.Data
                 throw new ConfigurationErrorsException(string.Format("Failed to find connection string '{0}' in application configuration.", connectionName));
 
             var providerName = connectionString.ProviderName;
-            if (string.IsNullOrWhiteSpace(_providerName))
+            if (string.IsNullOrWhiteSpace(providerName))
                 throw new ConfigurationErrorsException(string.Format("No provider specified for connection string '{0}' in application configuration.", connectionName));
 
-            var providerFactory = DbProviderFactories.GetFactory(_providerName);
+            var providerFactory = DbProviderFactories.GetFactory(providerName);
             if (providerFactory == null)
                 throw new ConfigurationErrorsException(string.Format("Could not create provider factory for '{0}', for connection string '{1}' in application configuration.", providerName, connectionName));
 

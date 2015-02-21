@@ -8,7 +8,7 @@ namespace DapperUnitOfWork.Domain.Entities
 {
     public class Breed
     {
-        public Guid BreedId { get; set; }
+        public int BreedId { get; set; }
         public string Name { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace DapperUnitOfWork.Domain.Repositories
     {
         IList<TEntity> GetAll();
         TEntity GetById(TId id);
-        Guid Insert(TEntity cat);
+        void Insert(TEntity cat);
         void Update(TEntity cat);
         void Delete(TEntity cat);
     }

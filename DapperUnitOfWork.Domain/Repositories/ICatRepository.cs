@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DapperUnitOfWork.Domain.Repositories
 {
-    public interface ICatRepository : IRepository<Cat, Guid>
+    public interface ICatRepository : IRepository<Cat, int>
     {
     }
 }
