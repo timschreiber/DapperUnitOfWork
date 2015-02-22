@@ -63,6 +63,15 @@ namespace DapperUnitOfWork.Data.Repositories
                 transaction: Transaction
             );
         }
+
+        public IList<Cat> GetByBreedId(int breedId)
+        {
+            return Connection.Query<Cat>(
+                "SELECT * FROM Cat WHERE BreedId = @BreedId",
+                param: new { BreedId = breedId },
+                transaction: Transaction
+            ).ToList();
+        }
         #endregion
     }
 }

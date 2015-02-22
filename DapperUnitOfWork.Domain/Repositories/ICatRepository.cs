@@ -9,5 +9,6 @@ namespace DapperUnitOfWork.Domain.Repositories
 {
     public interface ICatRepository : IRepository<Cat, int>
     {
+        IList<Cat> GetByBreedId(int breedId);
     }
 }
