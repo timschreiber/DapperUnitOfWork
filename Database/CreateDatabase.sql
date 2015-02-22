@@ -34,29 +34,33 @@ GO
 
 USE [LosGatos]
 GO
-/****** Object:  Table [dbo].[Breed]    Script Date: 2/21/2015 4:59:02 PM ******/
+/****** Object:  Table [dbo].[Breed]    Script Date: 2/22/2015 10:09:07 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Breed](
-	[Breed] [uniqueidentifier] NOT NULL,
+	[BreedId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](200) NOT NULL,
  CONSTRAINT [PK_Breed] PRIMARY KEY CLUSTERED 
 (
-	[Breed] ASC
+	[BreedId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [UX_Breed] UNIQUE NONCLUSTERED 
+(
+	[Name] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Cat]    Script Date: 2/21/2015 4:59:02 PM ******/
+/****** Object:  Table [dbo].[Cat]    Script Date: 2/22/2015 10:09:07 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Cat](
-	[CatId] [uniqueidentifier] NOT NULL,
-	[BreedId] [uniqueidentifier] NOT NULL,
+	[CatId] [int] IDENTITY(1,1) NOT NULL,
+	[BreedId] [int] NOT NULL,
 	[Name] [nvarchar](200) NOT NULL,
 	[Age] [int] NOT NULL,
  CONSTRAINT [PK_Cat] PRIMARY KEY CLUSTERED 
@@ -66,12 +70,8 @@ CREATE TABLE [dbo].[Cat](
 ) ON [PRIMARY]
 
 GO
-ALTER TABLE [dbo].[Breed] ADD  CONSTRAINT [DF_Breed_Breed]  DEFAULT (newid()) FOR [Breed]
-GO
-ALTER TABLE [dbo].[Cat] ADD  CONSTRAINT [DF_Cat_CatId]  DEFAULT (newid()) FOR [CatId]
-GO
 ALTER TABLE [dbo].[Cat]  WITH CHECK ADD  CONSTRAINT [FK_Cat_Breed] FOREIGN KEY([BreedId])
-REFERENCES [dbo].[Breed] ([Breed])
+REFERENCES [dbo].[Breed] ([BreedId])
 GO
 ALTER TABLE [dbo].[Cat] CHECK CONSTRAINT [FK_Cat_Breed]
 GO
