@@ -61,5 +61,14 @@ namespace DapperUnitOfWork.Data.Repositories
                 transaction: Transaction
             );
         }
+
+        public Breed GetByName(string name)
+        {
+            return Connection.Query<Breed>(
+                "SELECT * FROM Breed WHERE Name = @Name", 
+                param: new { Name = name }, 
+                transaction: Transaction
+            ).FirstOrDefault();
+        }
     }
 }

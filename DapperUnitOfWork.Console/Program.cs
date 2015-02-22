@@ -13,14 +13,21 @@ namespace DapperUnitOfWork.Console
     {
         static void Main(string[] args)
         {
-            var breed1 = new Breed { Name = "Orange Mackerel" };
-            var cat1 = new Cat { Name = "Cheddar", Age = 4 };
-
             using(var uow = new UnitOfWork("LosGatos"))
             {
-                uow.BreedRepository.Insert(breed1);
-                cat1.BreedId = breed1.BreedId;
-                uow.CatRepository.Insert(cat1);
+                var orangeMackerel = uow.BreedRepository.GetByName("Orange Mackerel");
+                var morris = new Cat { BreedId = orangeMackerel.BreedId, Name = "Morris", Age = 12 };
+                uow.CatRepository.Insert(morris);
+                uow.SaveChanges();
+
+                var siamese = new Breed { Name = "Siamese" };
+                uow.BreedRepository.Insert(siamese);
+                var foo = new Cat { BreedId = siamese.BreedId, Name = "Foo", Age = 19 };
+                var xing = new Cat { BreedId = siamese.BreedId, Name = "Xing", Age = 6 };
+                var xang = new Cat { BreedId = siamese.BreedId, Name = "Xang", Age = 6 };
+                uow.CatRepository.Insert(foo);
+                uow.CatRepository.Insert(xing);
+                uow.CatRepository.Insert(xang);
                 uow.SaveChanges();
             }
 
@@ -29,6 +36,20 @@ namespace DapperUnitOfWork.Console
         }
 
         /*
+        static void Test2()
+        {
+            var breed1 = new Breed { Name = "Orange Mackerel" };
+            var cat1 = new Cat { Name = "Cheddar", Age = 4 };
+
+            using (var uow = new UnitOfWork("LosGatos"))
+            {
+                uow.BreedRepository.Insert(breed1);
+                cat1.BreedId = breed1.BreedId;
+                uow.CatRepository.Insert(cat1);
+                uow.SaveChanges();
+            }
+        }
+
         static void Test1()
         {
             var breed1 = new Breed { Name = "Egyptian Mau" };

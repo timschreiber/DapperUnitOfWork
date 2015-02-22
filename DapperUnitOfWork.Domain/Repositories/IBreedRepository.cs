@@ -9,5 +9,6 @@ namespace DapperUnitOfWork.Domain.Repositories
 {
     public interface IBreedRepository : IRepository<Breed, int>
     {
+        Breed GetByName(string name);
     }
 }
