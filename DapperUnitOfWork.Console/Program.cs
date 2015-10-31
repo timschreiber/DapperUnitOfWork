@@ -1,6 +1,7 @@
 ﻿using DapperUnitOfWork.Data;
 using DapperUnitOfWork.Domain;
 using DapperUnitOfWork.Domain.Entities;
+using DapperUnitOfWork.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +16,20 @@ namespace DapperUnitOfWork.Console
         {
             using(var uow = new UnitOfWork("LosGatos"))
             {
-                var orangeMackerel = uow.BreedRepository.GetByName("Orange Mackerel");
+                var orangeMackerel = uow.BreedRepository.FindByName("Orange Mackerel");
                 var morris = new Cat { BreedId = orangeMackerel.BreedId, Name = "Morris", Age = 12 };
-                uow.CatRepository.Insert(morris);
-                uow.SaveChanges();
+                uow.CatRepository.Add(morris);
+                uow.Commit();
 
                 var siamese = new Breed { Name = "Siamese" };
-                uow.BreedRepository.Insert(siamese);
+                uow.BreedRepository.Add(siamese);
                 var foo = new Cat { BreedId = siamese.BreedId, Name = "Foo", Age = 19 };
                 var xing = new Cat { BreedId = siamese.BreedId, Name = "Xing", Age = 6 };
                 var xang = new Cat { BreedId = siamese.BreedId, Name = "Xang", Age = 6 };
-                uow.CatRepository.Insert(foo);
-                uow.CatRepository.Insert(xing);
-                uow.CatRepository.Insert(xang);
-                uow.SaveChanges();
+                uow.CatRepository.Add(foo);
+                uow.CatRepository.Add(xing);
+                uow.CatRepository.Add(xang);
+                uow.Commit();
             }
 
             System.Console.WriteLine("OK");

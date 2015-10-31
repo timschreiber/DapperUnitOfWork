@@ -1,12 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperUnitOfWork.Data", "DapperUnitOfWork.Data\DapperUnitOfWork.Data.csproj", "{AAE15ABB-6F0B-4DD3-893E-00D6BB13AB37}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperUnitOfWork.Domain", "DapperUnitOfWork.Domain\DapperUnitOfWork.Domain.csproj", "{A1296979-2C47-4DD2-B2D9-DE7B58D146A1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{E8543CF4-3BDE-4E93-8A5F-C6E4FDA3B756}"
 	ProjectSection(SolutionItems) = preProject
 		Database\CreateDatabase.sql = Database\CreateDatabase.sql
@@ -14,24 +10,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{E8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperUnitOfWork.Console", "DapperUnitOfWork.Console\DapperUnitOfWork.Console.csproj", "{FFE916E8-1CD7-4F54-95B6-E6B15B0C836C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperUnitOfWork", "DapperUnitOfWork\DapperUnitOfWork.csproj", "{77DA9A55-D9AA-493E-A1A7-CEFE3379CCFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AAE15ABB-6F0B-4DD3-893E-00D6BB13AB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAE15ABB-6F0B-4DD3-893E-00D6BB13AB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAE15ABB-6F0B-4DD3-893E-00D6BB13AB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAE15ABB-6F0B-4DD3-893E-00D6BB13AB37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1296979-2C47-4DD2-B2D9-DE7B58D146A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1296979-2C47-4DD2-B2D9-DE7B58D146A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1296979-2C47-4DD2-B2D9-DE7B58D146A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1296979-2C47-4DD2-B2D9-DE7B58D146A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFE916E8-1CD7-4F54-95B6-E6B15B0C836C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFE916E8-1CD7-4F54-95B6-E6B15B0C836C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFE916E8-1CD7-4F54-95B6-E6B15B0C836C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFE916E8-1CD7-4F54-95B6-E6B15B0C836C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DA9A55-D9AA-493E-A1A7-CEFE3379CCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DA9A55-D9AA-493E-A1A7-CEFE3379CCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DA9A55-D9AA-493E-A1A7-CEFE3379CCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DA9A55-D9AA-493E-A1A7-CEFE3379CCFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,23 +1,19 @@
-﻿using DapperUnitOfWork.Domain.Repositories;
-using System;
+﻿using DapperUnitOfWork.Entities;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
-using DapperUnitOfWork.Domain.Entities;
 
-namespace DapperUnitOfWork.Data.Repositories
+namespace DapperUnitOfWork.Repositories
 {
-    public class BreedRepository : RepositoryBase, IBreedRepository
+    internal class BreedRepository : RepositoryBase, IBreedRepository
     {
         public BreedRepository(IDbTransaction transaction)
             : base(transaction)
         {
         }
 
-        public IList<Breed> GetAll()
+        public IEnumerable<Breed> All()
         {
             return Connection.Query<Breed>(
                 "SELECT * FROM Breed",
@@ -25,7 +21,7 @@ namespace DapperUnitOfWork.Data.Repositories
             ).ToList();
         }
 
-        public Breed GetById(int id)
+        public Breed Find(int id)
         {
             return Connection.Query<Breed>(
                 "SELECT * FROM Breed WHERE BreedId = @BreedId",
@@ -34,39 +30,43 @@ namespace DapperUnitOfWork.Data.Repositories
             ).FirstOrDefault();
         }
 
-        public void Insert(Breed breed)
+        public void Add(Breed entity)
         {
-            var breedId = Connection.ExecuteScalar<int>(
+            entity.BreedId = Connection.ExecuteScalar<int>(
                 "INSERT INTO Breed(Name) VALUES(@Name); SELECT SCOPE_IDENTITY()",
-                param: new { Name = breed.Name },
+                param: new { Name = entity.Name },
                 transaction: Transaction
             );
-            breed.BreedId = breedId;
         }
 
-        public void Update(Breed breed)
+        public void Update(Breed entity)
         {
             Connection.Execute(
                 "UPDATE Breed SET Name = @Name WHERE BreedId = @BreedId",
-                param: new { Name = breed.Name, BreedId = breed.BreedId },
+                param: new { Name = entity.Name, BreedId = entity.BreedId },
                 transaction: Transaction
             );
         }
 
-        public void Delete(Breed breed)
+        public void Delete(int id)
         {
             Connection.Execute(
                 "DELETE FROM Breed WHERE BreedId = @BreedId",
-                param: new { BreedId = breed.BreedId },
+                param: new { BreedId = id },
                 transaction: Transaction
             );
         }
 
-        public Breed GetByName(string name)
+        public void Delete(Breed entity)
+        {
+            Delete(entity.BreedId);
+        }
+
+        public Breed FindByName(string name)
         {
             return Connection.Query<Breed>(
-                "SELECT * FROM Breed WHERE Name = @Name", 
-                param: new { Name = name }, 
+                "SELECT * FROM Breed WHERE Name = @Name",
+                param: new { Name = name },
                 transaction: Transaction
             ).FirstOrDefault();
         }

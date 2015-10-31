@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DapperUnitOfWork.Data")]
+[assembly: AssemblyTitle("DapperUnitOfWork")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DapperUnitOfWork.Data")]
+[assembly: AssemblyProduct("DapperUnitOfWork")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2c3ff3ca-4487-4f2e-8093-ea740ef1f479")]
+[assembly: Guid("77da9a55-d9aa-493e-a1a7-cefe3379ccfb")]
 
 // Version information for an assembly consists of the following four values:
 //

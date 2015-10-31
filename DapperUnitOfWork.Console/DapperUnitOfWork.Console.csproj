@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DapperUnitOfWork.App</RootNamespace>
     <AssemblyName>DapperUnitOfWork.Console</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,13 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DapperUnitOfWork.Data\DapperUnitOfWork.Data.csproj">
-      <Project>{aae15abb-6f0b-4dd3-893e-00d6bb13ab37}</Project>
-      <Name>DapperUnitOfWork.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DapperUnitOfWork.Domain\DapperUnitOfWork.Domain.csproj">
-      <Project>{a1296979-2c47-4dd2-b2d9-de7b58d146a1}</Project>
-      <Name>DapperUnitOfWork.Domain</Name>
+    <ProjectReference Include="..\DapperUnitOfWork\DapperUnitOfWork.csproj">
+      <Project>{77da9a55-d9aa-493e-a1a7-cefe3379ccfb}</Project>
+      <Name>DapperUnitOfWork</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

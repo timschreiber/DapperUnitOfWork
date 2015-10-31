@@ -1,15 +1,11 @@
-﻿using DapperUnitOfWork.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
-using DapperUnitOfWork.Domain;
-using DapperUnitOfWork.Domain.Repositories;
+using DapperUnitOfWork.Entities;
 
-namespace DapperUnitOfWork.Data.Repositories
+namespace DapperUnitOfWork.Repositories
 {
     internal class CatRepository : RepositoryBase, ICatRepository
     {
@@ -18,16 +14,14 @@ namespace DapperUnitOfWork.Data.Repositories
         {
         }
 
-        #region ICatRepository Members
-        public IList<Cat> GetAll()
+        public IEnumerable<Cat> All()
         {
             return Connection.Query<Cat>(
-                "SELECT * FROM Cat",
-                transaction: Transaction
-            ).ToList();
+                "SELECT * FROM Cat"
+            );
         }
 
-        public Cat GetById(int id)
+        public Cat Find(int id)
         {
             return Connection.Query<Cat>(
                 "SELECT * FROM Cat WHERE CatId = @CatId",
@@ -36,42 +30,54 @@ namespace DapperUnitOfWork.Data.Repositories
             ).FirstOrDefault();
         }
 
-        public void Insert(Cat cat)
+        public void Add(Cat entity)
         {
-            var catId = Connection.ExecuteScalar<int>(
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            entity.CatId = Connection.ExecuteScalar<int>(
                 "INSERT INTO Cat(BreedId, Name, Age) VALUES(@BreedId, @Name, @Age); SELECT SCOPE_IDENTITY()",
-                param: new { BreedId = cat.BreedId, Name = cat.Name, Age = cat.Age },
+                param: new { BreedId = entity.BreedId, Name = entity.Name, Age = entity.Age },
                 transaction: Transaction
             );
-            cat.CatId = catId;
         }
 
-        public void Update(Cat cat)
+        public void Update(Cat entity)
         {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
             Connection.Execute(
                 "UPDATE Cat SET BreedId = @BreedId, Name = @Name, Age = @Age WHERE CatId = @CatId",
-                param: new { CatId = cat.CatId, BreedId = cat.BreedId, Name = cat.Name, Age = cat.Age },
+                param: new { CatId = entity.CatId, BreedId = entity.BreedId, Name = entity.Name, Age = entity.Age },
                 transaction: Transaction
             );
         }
 
-        public void Delete(Cat cat)
+        public void Remove(Cat entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            Remove(entity.CatId);
+        }
+
+        public void Remove(int id)
         {
             Connection.Execute(
                 "DELETE FROM Cat WHERE CatId = @CatId",
-                param: new { CatId = cat.CatId },
+                param: new { CatId = id },
                 transaction: Transaction
             );
         }
 
-        public IList<Cat> GetByBreedId(int breedId)
+        public IEnumerable<Cat> FindByBreedId(int breedId)
         {
             return Connection.Query<Cat>(
                 "SELECT * FROM Cat WHERE BreedId = @BreedId",
                 param: new { BreedId = breedId },
                 transaction: Transaction
-            ).ToList();
+            );
         }
-        #endregion
     }
 }
