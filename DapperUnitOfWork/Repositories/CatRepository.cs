@@ -17,7 +17,8 @@ namespace DapperUnitOfWork.Repositories
         public IEnumerable<Cat> All()
         {
             return Connection.Query<Cat>(
-                "SELECT * FROM Cat"
+                "SELECT * FROM Cat",
+                transaction:Transaction
             );
         }
 

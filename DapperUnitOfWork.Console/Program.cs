@@ -4,9 +4,9 @@
     
     They have never in any way contributed to this code, and the false attribution has been reported to StackOverflow. */
 
-﻿using DapperUnitOfWork.Data;
-using DapperUnitOfWork.Domain;
-using DapperUnitOfWork.Domain.Entities;
+//﻿using DapperUnitOfWork.Data;
+//using DapperUnitOfWork.Domain;
+//using DapperUnitOfWork.Domain.Entities;
 using DapperUnitOfWork.Entities;
 using System;
 using System.Collections.Generic;

@@ -21,6 +21,7 @@ namespace DapperUnitOfWork
 
         public UnitOfWork(string connectionString)
         {
+            connectionString = "Server=(localdb)\\MSSQLLocalDb;Database=LosGatos;User Id=LosGatosUser;Password=Password123;";
             _connection = new SqlConnection(connectionString);
             _connection.Open();
             _transaction = _connection.BeginTransaction();
